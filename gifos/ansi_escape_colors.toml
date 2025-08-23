@@ -1,0 +1,26 @@
+# ansi_escape_colors.toml
+
+[kaolin]
+        [kaolin.default_colors]
+        fg = "#e6e6e8"
+        bg = "#18181b"
+
+        [kaolin.normal_colors]
+        black = "#232526"
+        red = "#e55c74"
+        green = "#6dd797"
+        yellow = "#eed891"
+        blue= "#4ca6e8"
+        magenta = "#9d81ba"
+        cyan = "#6bd9db"
+        white = "#e6e6e8"
+
+        [kaolin.bright_colors]
+        black = "#2c2e2f"
+        red = "#ef6787"
+        green2 = "#31e183"
+        yellow = "#eed891"
+        blue = "#709ad2"
+        magenta = "#c58cec"
+        cyan = "#0bc9cf"
+        white = "#f2f4f5"
