@@ -1,30 +1,34 @@
-import gifos, dotenv, os
+import gifos, dotenv, os, re
 from datetime import datetime
 from zoneinfo import ZoneInfo
+
+
+def remove_ansi(text):
+    return re.sub(r'\x1b\[[0-9;]*m', '', text)
 
 FONT_FILE_BITMAP = "./assets/fonts/JetBrainsMonoNerdFont-Regular.ttf"
 GITHUB_TOKEN = os.getenv("TOKEN")
 
 
 nitch = f"""
- \x1b[36m  _  ___      ____  ____
+  _  ___      ____  ____
   / |/ (_)_ __/ __ \/ __/
  /    / /\ \ / /_/ /\ \
 /_/|_/_//_\_\\\\____/___/
-\x1b[0m
+
   ╭───────────╮
-  │ \x1b[31m\x1b[0m  user   │ \x1b[31mhotln\x1b[0m
-  │ \x1b[33m\x1b[0m  hname  │ \x1b[33mnixos\x1b[0m
-  │ \x1b[32m󰻀\x1b[0m  distro │ \x1b[32mNixOS 24.11 (Vicuna)\x1b[0m
-  │ \x1b[36m󰌢\x1b[0m  kernel │ \x1b[36m6.6.48\x1b[0m
-  │ \x1b[34m\x1b[0m  uptime │ \x1b[34m20 sumtin\x1b[0m
-  │ \x1b[35m\x1b[0m  shell  │ \x1b[35mzsh\x1b[0m
-  │ \x1b[31m󰏖\x1b[0m  pkgs   │ \x1b[31m2229\x1b[0m
-  │ \x1b[33m󰍛\x1b[0m  memory │ \x1b[33m4506 | 64174 MiB\x1b[0m
+  │   user   │ hotln
+  │   hname  │ nixos
+  │ 󰻀  distro │ NixOS 24.11 (Vicuna)
+  │ 󰌢  kernel │ 6.6.48
+  │   uptime │ 20 sumtin
+  │   shell  │ zsh
+  │ 󰏖  pkgs   │ 2229
+  │ 󰍛  memory │ 4506 | 64174 MiB
   ├───────────┤
-  │ 󰏘  colors │  \x1b[31m  \x1b[0m\x1b[32m  \x1b[0m\x1b[33m  \x1b[0m\x1b[34m  \x1b[0m\x1b[35m  \x1b[0m\x1b[36m  \x1b[0m\x1b[37m  \x1b[0m
+  │ 󰏘  colors │        
   ╰───────────╯
-    """
+    """    
 
 
 # Initialize Terminal
@@ -99,8 +103,8 @@ def main():
 │    │                                                                                                     ││\x1b[32mCPU1    8%\x1b[0m     │
 │    │                                                                                                     ││\x1b[33mCPU2    5%\x1b[0m     │
 │    │                                                                                                     ││\x1b[34mCPU3    6%\x1b[0m     │
-│    │\x1b[31m                             ⣀⣀⠤⠤⠔⠒⠒⠤⠤⠤⣀⣀⡀                                                          \x1b[0m ││\x1b[35mCPU4    8%\x1b[0m     │
-│    │\x1b[31m                   ⣀⣀⡠⠤⠤⠒⠒⠊⠉⠉            ⠈⠉⠉⠒⠒⠒⠤⠤⢄⣀⣀⡀                                               \x1b[0m ││\x1b[36mCPU5    3%\x1b[0m     │
+│    │                             ⣀⣀⠤⠤⠔⠒⠒⠤⠤⠤⣀⣀⡀                                                          \x1b[0m ││\x1b[35mCPU4    8%\x1b[0m     │
+│    │                   ⣀⣀⡠⠤⠤⠒⠒⠊⠉⠉            ⠈⠉⠉⠒⠒⠒⠤⠤⢄⣀⣀⡀                                               \x1b[0m ││\x1b[36mCPU5    3%\x1b[0m     │
 │    │\x1b[31m         ⢀⣀⣀⠤⠤⠔⠒⠒⠉⠉                                 ⠈⠉⠉⠒⠒⠢⠤⠤⢄⣀⣀                                     \x1b[0m ││\x1b[37mCPU6    6%\x1b[0m     │
 │    │\x1b[31m ⣀⡠⠤⠤⠒⠒⠉⠉⠁                 ⢀⣀⣀⣀⣀⡠⠤⠤⠤⠤⢄⣀⣀⣀⣀⣀⡀                   ⠉⣀⣀⣀⣀⣀⣀⣀⣀⡀⣀⣀⣀                        \x1b[0m ││\x1b[31mCPU7    6%\x1b[0m     │
 │    │\x1b[32m   ⢀⣀⣀⣀⢀⣀⣀⣀⣀⠤⠤⠤⠤⠤⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⢄⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⡀⠒⠒⠒⠒⠒⠤⠤⠤⠤⠤⠤⣀⣀⣀⣀⣀⡀⠤⠤ \x1b[0m   ││\x1b[32mCPU8    3%\x1b[0m     │
@@ -327,10 +331,10 @@ def main():
 
     # Loop over Bottom command
     for x in range(2):
-        t.gen_text(bottom0, 10, count=30)
-        t.gen_text(bottom1, 10, count=30)
-        t.gen_text(bottom2, 10, count=30)
-        t.gen_text(bottom3, 10, count=30)
+        t.gen_text(remove_ansi(bottom0), 10, count=30)
+        t.gen_text(remove_ansi(bottom1), 10, count=30)
+        t.gen_text(remove_ansi(bottom2), 10, count=30)
+        t.gen_text(remove_ansi(bottom3), 10, count=30)
 
     t.toggle_show_cursor(True)
 
